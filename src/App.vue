@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-navbar toggleable="lg">
+      <b-container>
+        <b-navbar-brand href="#">SeatPlan</b-navbar-brand>
+      </b-container>
+    </b-navbar>
+
+    <div class="section-hero">
+      <b-container>
+        <h1>Add a photo</h1>
+        <p>Add a photo from your seat</p>
+      </b-container>
+    </div>
+
+    <b-container>
+      <AddPhoto/>
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AddPhoto from './components/AddPhoto.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+     AddPhoto
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
