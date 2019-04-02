@@ -1,4 +1,5 @@
 <template>
+
   <div id="app">
     <b-navbar toggleable="lg">
       <b-container>
