@@ -38,7 +38,8 @@ body {
     line-height: 24px;
 }
 
-#app label {
+#app label,
+#app .label {
     display: inline-block;
     font-weight: 700;
     text-align: left;
@@ -63,6 +64,6 @@ body {
 
 #app .form-control,
 #app .custom-select,
-#app .vdp-datepicker input{
+#app .vdp-datepicker input {
     background-color: #f2f4f5;
 }

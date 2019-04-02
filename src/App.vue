@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import AddPhoto from './components/AddPhoto.vue'
+import AddPhoto from './pages/AddPhoto.vue'
 
 export default {
   name: 'app',

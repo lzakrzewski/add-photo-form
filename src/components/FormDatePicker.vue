@@ -1,11 +1,16 @@
 <template>
     <b-row v-bind:class="name">
         <b-col sm="2">
-            <label class="float-left" :for="name">{{ displayName }}</label>
+            <label class="float-left" :for="name">{{ name | displayName }}</label>
         </b-col>
 
         <b-col sm="4">
-            <datepicker v-model="value" v-bind:bootstrap-styling=true />
+            <datepicker
+                    v-model="value"
+                    v-bind:bootstrap-styling=true
+                    format="yyyy-MM-dd"
+                    :disabledDates="disabledDates"
+            />
         </b-col>
 
         <b-col sm="1" class="check-icon">
@@ -26,10 +31,12 @@
         props: {
             name: String
         },
+        filters: {
+            displayName: (name) => {
+                return name.replace(/-/g, ' ');
+            }
+        },
         computed: {
-            displayName: (component) => {
-                return component.name.replace(/-/g, ' ');
-            },
             value: {
                 get: function () {
                     return null;
@@ -38,6 +45,13 @@
                     this.$emit('input', value)
                 }
             },
+        },
+        data() {
+            return {
+                disabledDates: {
+                    from: new Date()
+                }
+            }
         }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <b-row v-bind:class="name">
         <b-col sm="2">
-            <label class="float-left" :for="name">{{ displayName }}</label>
+            <label class="float-left" :for="name">{{ name | displayName }}</label>
         </b-col>
 
         <b-col sm="6">
@@ -27,10 +27,12 @@
             name: String,
             placeholder: String
         },
+        filters: {
+            displayName: (name) => {
+                return name.replace(/-/g, ' ');
+            }
+        },
         computed: {
-            displayName: (component) => {
-                return component.name.replace(/-/g, ' ');
-            },
             value: {
                 get: function () {
                     return '';
