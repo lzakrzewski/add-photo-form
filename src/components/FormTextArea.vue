@@ -7,7 +7,7 @@
         <b-col sm="6">
             <b-form-textarea
                     :id="name"
-                    v-model="text"
+                    v-model="value"
                     :placeholder="placeholder"
                     rows="3"
                     max-rows="6"
@@ -25,12 +25,20 @@
         name: 'FormTextArea',
         props: {
             name: String,
-            placeholder: String,
+            placeholder: String
         },
         computed: {
             displayName: (component) => {
                 return component.name.replace(/-/g, ' ');
-            }
+            },
+            value: {
+                get: function () {
+                    return '';
+                },
+                set: function(value) {
+                    this.$emit('input', value)
+                }
+            },
         }
     }
 </script>

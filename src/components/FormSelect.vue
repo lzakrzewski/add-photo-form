@@ -5,7 +5,7 @@
         </b-col>
 
         <b-col v-bind:sm="length">
-            <b-form-select :id="name" v-model="selected" :options="options"></b-form-select>
+            <b-form-select :id="name" v-model="value" :options="options"></b-form-select>
         </b-col>
 
         <b-col sm="1" class="check-icon">
@@ -25,10 +25,15 @@
                 default: '4'
             },
         },
-        data() {
-            return {
-                selected: null
-            }
+        computed: {
+            value: {
+                get: function () {
+                    return null;
+                },
+                set: function(value) {
+                    this.$emit('input', value)
+                }
+            },
         }
     }
 </script>

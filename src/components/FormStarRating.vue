@@ -7,6 +7,7 @@
         <b-col sm="3">
             <div class="form-control">
                 <star-rating
+                        v-model="value"
                         v-bind:max-rating="5"
                         v-bind:star-size="30"
                         v-bind:show-rating="false"
@@ -30,6 +31,16 @@
         },
         components: {
             StarRating
+        },
+        computed: {
+            value: {
+                get: function () {
+                    return 0;
+                },
+                set: function(value) {
+                    this.$emit('input', value)
+                }
+            },
         }
     }
 </script>
@@ -40,5 +51,3 @@
         width: 154px;
     }
 </style>
-
-

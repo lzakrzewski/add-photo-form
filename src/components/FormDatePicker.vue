@@ -5,7 +5,7 @@
         </b-col>
 
         <b-col sm="4">
-            <datepicker v-bind:bootstrap-styling=true />
+            <datepicker v-model="value" v-bind:bootstrap-styling=true />
         </b-col>
 
         <b-col sm="1" class="check-icon">
@@ -29,7 +29,15 @@
         computed: {
             displayName: (component) => {
                 return component.name.replace(/-/g, ' ');
-            }
+            },
+            value: {
+                get: function () {
+                    return null;
+                },
+                set: function(value) {
+                    this.$emit('input', value)
+                }
+            },
         }
     }
 </script>
