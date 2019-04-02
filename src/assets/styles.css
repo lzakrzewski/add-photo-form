@@ -62,6 +62,13 @@ body {
     margin: 20px 0;
 }
 
+#app .invalid-feedback {
+    display: inline-block;
+    margin-top: 0;
+    line-height: 0;
+    float:left;
+}
+
 #app .form-control,
 #app .custom-select,
 #app .vdp-datepicker input {

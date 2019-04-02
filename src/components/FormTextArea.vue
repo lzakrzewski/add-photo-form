@@ -14,9 +14,10 @@
             ></b-form-textarea>
         </b-col>
 
-        <b-col sm="1" class="check-icon">
+        <b-col v-if="isValid" sm="1" class="check-icon">
             <v-icon name="check" class="float-left"/>
         </b-col>
+
     </b-row>
 </template>
 
@@ -25,7 +26,8 @@
         name: 'FormTextArea',
         props: {
             name: String,
-            placeholder: String
+            placeholder: String,
+            isValid: Boolean,
         },
         filters: {
             displayName: (name) => {

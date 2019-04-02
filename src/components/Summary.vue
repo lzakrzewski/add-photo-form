@@ -42,6 +42,11 @@
                 <b-col sm="6">{{ formData.view }}/5</b-col>
             </b-row>
 
+            <b-row>
+                <b-col class="label" sm="2">Seat comments</b-col>
+                <b-col sm="6">{{ formData.seatComments }}</b-col>
+            </b-row>
+
             <b-col sm="2" offset-sm="2" class="clearfix">
                 <b-button v-on:click="reload" class="float-left"  variant="danger">Repeat</b-button>
             </b-col>

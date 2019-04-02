@@ -1,7 +1,7 @@
 <template>
     <b-row v-bind:class="name">
         <b-col sm="2">
-            <label class="float-left" :for="name">{{ name | displayName }}</label>
+            <label class="float-left" :for="name">{{ name | displayName }}<small v-if="hasError" class="invalid-feedback">required</small></label>
         </b-col>
 
         <b-col sm="4">
@@ -10,10 +10,11 @@
                     v-bind:bootstrap-styling=true
                     format="yyyy-MM-dd"
                     :disabledDates="disabledDates"
+                    v-bind:input-class="{'is-invalid': hasError }"
             />
         </b-col>
 
-        <b-col sm="1" class="check-icon">
+        <b-col v-if="isValid"  sm="1" class="check-icon">
             <v-icon name="check" class="float-left"/>
         </b-col>
 
@@ -29,7 +30,9 @@
             Datepicker
         },
         props: {
-            name: String
+            name: String,
+            isValid: Boolean,
+            hasError: Boolean
         },
         filters: {
             displayName: (name) => {

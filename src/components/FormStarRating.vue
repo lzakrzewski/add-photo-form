@@ -1,11 +1,11 @@
 <template>
     <b-row v-bind:class="name">
         <b-col sm="2">
-            <label class="float-left" :for="name">{{name}}</label>
+            <label class="float-left" :for="name">{{name}}<small v-if="hasError" class="invalid-feedback">required</small></label>
         </b-col>
 
         <b-col sm="3">
-            <div class="form-control">
+            <div class="form-control" v-bind:class="{'is-invalid': hasError }">
                 <star-rating
                         v-model="value"
                         v-bind:max-rating="5"
@@ -15,7 +15,7 @@
             </div>
         </b-col>
 
-        <b-col sm="1" class="check-icon">
+        <b-col v-if="isValid" sm="1" class="check-icon">
             <v-icon name="check" class="float-left"/>
         </b-col>
     </b-row>
@@ -27,7 +27,9 @@
     export default {
         name: 'FormStarRating',
         props: {
-            name: String
+            name: String,
+            isValid: Boolean,
+            hasError: Boolean
         },
         components: {
             StarRating

@@ -1,46 +1,63 @@
 <template>
     <form @submit.prevent="submit">
         <FormSelect
-                v-model="venue"
+                v-model="formData.venue"
                 name="Venue"
                 :options="fixtures.VENUES"
                 length="6"
+                v-bind:isValid="isValid(this.formData.venue)"
+                v-bind:hasError="hasError(this.formData.venue)"
         />
         <FormSelect
-                v-model="section"
+                v-model="formData.section"
                 name="Section"
                 :options="fixtures.SECTIONS"
+                v-bind:isValid="isValid(this.formData.section)"
+                v-bind:hasError="hasError(this.formData.section)"
         />
         <FormSelect
-                v-model="row"
+                v-model="formData.row"
                 name="Row"
                 :options="fixtures.ROWS"
+                v-bind:isValid="isValid(this.formData.row)"
+                v-bind:hasError="hasError(this.formData.row)"
         />
         <FormSelect
-                v-model="seat"
+                v-model="formData.seat"
                 name="Seat"
                 :options="fixtures.SEATS"
+                v-bind:isValid="isValid(this.formData.seat)"
+                v-bind:hasError="hasError(this.formData.seat)"
         />
         <FormDatePicker
-                v-model="dateOfVisit"
+                v-model="formData.dateOfVisit"
                 name="Date-of-visit"
+                v-bind:isValid="isValid(this.formData.dateOfVisit)"
+                v-bind:hasError="hasError(this.formData.dateOfVisit)"
         />
         <FormStarRating
-                v-model="comfort"
+                v-model="formData.comfort"
                 name="Comfort"
+                v-bind:isValid="isValid(this.formData.comfort)"
+                v-bind:hasError="hasError(this.formData.comfort)"
         />
         <FormStarRating
-                v-model="legroom"
+                v-model="formData.legroom"
                 name="Legroom"
+                v-bind:isValid="isValid(this.formData.legroom)"
+                v-bind:hasError="hasError(this.formData.legroom)"
         />
         <FormStarRating
-                v-model="view"
+                v-model="formData.view"
                 name="View"
+                v-bind:isValid="isValid(this.formData.view)"
+                v-bind:hasError="hasError(this.formData.view)"
         />
         <FormTextArea
-                v-model="seatComments"
+                v-model="formData.seatComments"
                 name="Seat-comments"
                 placeholder="Could you see all of the stage? Were you comfortable? Good legroom?"
+                v-bind:isValid="isValid(this.formData.seatComments)"
         />
 
         <b-col sm="2" offset-sm="2" class="clearfix">
@@ -65,31 +82,46 @@
             FormStarRating
         },
         methods: {
+            isValid: function (value) {
+                return !!value;
+            },
+            hasError: function (value) {
+                if (!this.isSubmitted) {
+                    return false;
+                }
+
+                return !this.isValid(value);
+            },
+            hasAnyError: function () {
+                const requiredFields = ['venue', 'section', 'row', 'seat', 'dateOfVisit', 'comfort', 'legroom', 'view'];
+                const errors = requiredFields.filter(key => this.hasError(this.formData[key]));
+
+                return errors.length !== 0;
+            },
             submit () {
-                this.$emit('form-submitted', {
-                    venue: this.venue,
-                    section: this.section,
-                    row: this.row,
-                    seat: this.seat,
-                    dateOfVisit: this.dateOfVisit,
-                    comfort: this.comfort,
-                    legroom: this.legroom,
-                    view: this.view,
-                    seatComments: this.seatComments,
-                });
+                this.isSubmitted = true;
+
+                if (this.hasAnyError()) {
+                    return ;
+                }
+
+               this.$emit('form-submitted', this.formData);
             }
         },
         data() {
             return {
-                venue: null,
-                section: null,
-                row: null,
-                seat: null,
-                dateOfVisit: null,
-                comfort: 0,
-                legroom: 0,
-                view: 0,
-                seatComments: '',
+                formData: {
+                    venue: null,
+                    section: null,
+                    row: null,
+                    seat: null,
+                    dateOfVisit: null,
+                    comfort: 0,
+                    legroom: 0,
+                    view: 0,
+                    seatComments: '',
+                },
+                isSubmitted: false,
                 fixtures: fixtures
             }
         }
