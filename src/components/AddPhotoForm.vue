@@ -1,5 +1,11 @@
 <template>
     <form @submit.prevent="submit">
+        <WebCam
+                v-model="formData.image"
+                name="Selfie"
+                v-bind:isValid="isValid(this.formData.image)"
+                v-bind:hasError="hasError(this.formData.image)"
+        />
         <FormSelect
                 v-model="formData.venue"
                 name="Venue"
@@ -72,10 +78,12 @@
     import FormSelect from '../components/FormSelect';
     import FormDatePicker from '../components/FormDatePicker';
     import FormStarRating from '../components/FormStarRating';
+    import WebCam from "./WebCam";
 
     export default {
         name: 'AddPhotoForm',
         components: {
+            WebCam,
             FormSelect,
             FormTextArea,
             FormDatePicker,
@@ -93,7 +101,7 @@
                 return !this.isValid(value);
             },
             hasAnyError: function () {
-                const requiredFields = ['venue', 'section', 'row', 'seat', 'dateOfVisit', 'comfort', 'legroom', 'view'];
+                const requiredFields = ['image', 'venue', 'section', 'row', 'seat', 'dateOfVisit', 'comfort', 'legroom', 'view'];
                 const errors = requiredFields.filter(key => this.hasError(this.formData[key]));
 
                 return errors.length !== 0;
@@ -111,6 +119,7 @@
         data() {
             return {
                 formData: {
+                    image: null,
                     venue: null,
                     section: null,
                     row: null,

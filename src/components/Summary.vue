@@ -3,6 +3,11 @@
         <div class="card-header"><h4>Summary</h4></div>
         <div class="card-body">
             <b-row>
+                <b-col class="label" sm="2">Selfie</b-col>
+                <b-col sm="6"><img :src="formData.image"/></b-col>
+            </b-row>
+
+            <b-row>
                 <b-col class="label" sm="2">Venue</b-col>
                 <b-col sm="6">{{ formData.venue }}</b-col>
             </b-row>
