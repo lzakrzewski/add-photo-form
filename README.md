@@ -1,6 +1,6 @@
 # add-photo-form
 
-[Live URL !](https://add-photo-form.herokuapp.com/)
+*Live URL* - [add-photo-form.herokuapp.com](https://add-photo-form.herokuapp.com)
 
 ## Project setup
 ```
