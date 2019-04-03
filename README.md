@@ -1,29 +1,18 @@
 # add-photo-form
 
+[Live URL !](https://add-photo-form.herokuapp.com/)
+
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Start project
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Test
 ```
-npm run build
+npm run test-all
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

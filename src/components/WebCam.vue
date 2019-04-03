@@ -35,10 +35,6 @@
             hasError: Boolean
         },
         methods: {
-            reset: function () {
-                console.log(this.image);
-                console.log(this.value);
-            },
             setUp: function () {
                 this.image = null;
                 this.value = null;
